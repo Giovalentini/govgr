@@ -56,6 +56,6 @@ if __name__ == "__main__":
     # Close the browser and clean up the resources
     driver.quit()
 
-    data.to_csv("govgr_data.csv")
+    data.to_csv("govgr_data.csv", index=False)
     # Display the resulting DataFrame
     #print(data)
