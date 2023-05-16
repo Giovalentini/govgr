@@ -11,3 +11,5 @@ df = pd.read_csv(github_data_path + 'govgr_data.csv')
 
 # show df in app
 st.dataframe(df)
+
+st.download_button("download", df, file_name="test.csv")
