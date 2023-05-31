@@ -1,12 +1,19 @@
+import base64
 import time
+
 import pandas as pd
-from datetime import datetime, timedelta
+import streamlit as st
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.options import Options
 from bs4 import BeautifulSoup
 
 from util_func import scrape_table_data
+
+
+st.write("""
+# govgr web scraping app
+""")
 
 if __name__ == "__main__":
     # Set the options for the ChromeDriver
@@ -59,3 +66,22 @@ if __name__ == "__main__":
     data.to_csv("govgr_data.csv", index=False)
     # Display the resulting DataFrame
     #print(data)
+
+## read df from github
+#github_data_path = "https://raw.githubusercontent.com/Giovalentini/govgr/main/"
+#df = pd.read_csv(github_data_path + 'govgr_data.csv')
+
+# show df in app
+st.dataframe(data)
+
+# Create a button to download the DataFrame
+def download_dataframe(df):
+    csv = df.to_csv(index=False)
+    b64 = base64.b64encode(csv.encode()).decode()
+    href = f'<a href="data:file/csv;base64,{b64}" download="data.csv">Download CSV file</a>'
+    return href
+
+st.dataframe(data)
+
+if st.button('Download'):
+    st.markdown(download_dataframe(data), unsafe_allow_html=True)
