@@ -75,12 +75,12 @@ if __name__ == "__main__":
 st.dataframe(data)
 
 # Create a button to download the DataFrame
-#def download_dataframe(df):
-#    csv = df.to_csv(index=False)
-#    b64 = base64.b64encode(csv.encode()).decode()
-#    href = f'<a href="data:file/csv;base64,{b64}" download="data.csv">Download CSV file</a>'
-#    return href
-#
+def download_dataframe(df):
+    csv = df.to_csv(index=False)
+    b64 = base64.b64encode(csv.encode()).decode()
+    href = f'<a href="data:file/csv;base64,{b64}" download="data.csv">Download CSV file</a>'
+    return href
+
 #st.dataframe(data)
 
 if st.button('Download'):
